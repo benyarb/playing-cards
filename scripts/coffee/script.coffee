@@ -1,5 +1,5 @@
 # Author: Ben Yarbrough
-# requires underscore
+# requires underscore - http://underscorejs.org
 
 # assign global scope to the root variable
 root = exports ? this
@@ -47,38 +47,21 @@ class App.Models.Card
 
 
 class App.Models.Game
-  cardsToTurn: null # override in subclass
-  numberOfFoundations: 4
-  numberOfTableauPiles: 7
+  constructor: (@numberOfPlayers = 4) ->
+    # Setup Empty Player Hands, Defaults to 4 Players
+    @players = ([] for i in [0...@numberOfPlayers])
 
-  constructor: ->
-    # Structure
-    @faceUpTableauPiles = ([] for i in [0...@numberOfTableauPiles])
-    @faceDownTableauPiles = ([] for i in [0...@numberOfTableauPiles])
-    @stock = []
-    @waste = []
-    @foundations = ([] for i in [0...@numberOfFoundations])
-
-    @undoStack = []
-
-    # Locators
-    @locators = {}
-    @locators.foundations = (['foundations', i] for i in [0...@numberOfFoundations])
-    @locators.faceDownTableauPiles = (['faceDownTableauPiles', i] for i in [0...@numberOfTableauPiles])
-    @locators.faceUpTableauPiles = (['faceUpTableauPiles', i] for i in [0...@numberOfTableauPiles])
-    @locators.all = [['stock'], ['waste'], @locators.foundations...,
-      @locators.faceDownTableauPiles..., @locators.faceUpTableauPiles...]
-
+    # Create a Shuffled Deck
+    # Uses Fischer-Yates Algorithm - http://bwy.me/4c
+    # Via Underscore.js - http://underscorejs.org/#shuffle
     @deck = _(@createDeck()).shuffle()
 
   deal: ->
     deckCopy = @deck.slice(0)
-    for i in [0...@faceDownTableauPiles.length]
+
+    for i in [0...@numberOfPlayers.length]
       for j in [0...i]
-        @faceDownTableauPiles[i].push(deckCopy.pop())
-      @faceUpTableauPiles[i].push(deckCopy.pop())
-    while deckCopy.length
-      @stock.push(deckCopy.pop())
+        @players[i].push(deckCopy.pop())
 
   createDeck: ->
     _(new App.Models.Card(rank, suit) \
@@ -94,73 +77,11 @@ App.Controllers ?= {}
 
 App.rootElement = '#card-table'
 
-class App.Controllers.Card
-  size: {width: 79, height: 123}
-  element: null
 
-  constructor: (@model) ->
+class App.Controllers.Play
+  constructor: (@numberOfPlayers = 4) ->
 
-  appendTo: (rootElement) ->
-    @element = document.createElement('div')
-    @element.className = 'card'
-    @element.id = @model.id
-    $(@element).css(@size)
-    $(rootElement).append(@element)
+  @model: new App.Models.Game(@numberOfPlayers)
 
-  destroy: -> $(@element).remove()
-
-  setRestingState: (pos, zIndex, faceUp) ->
-    @restingState =
-      position: _.clone(pos)
-      zIndex: zIndex
-      faceUp: faceUp
-
-  jumpToRestingPosition: ->
-    currentState = _(@restingState).clone()
-    $(@element).queue (next) =>
-      $(@element).css(zIndex: currentState.zIndex).css(currentState.position)
-      next()
-
-  animateToRestingPosition: (options, liftoff=true) ->
-    currentState = _(@restingState).clone()
-    $(@element).queue (next) =>
-      $(@element).css zIndex: currentState.zIndex + if liftoff then 1000 else 0
-      next()
-    $(@element).animate(currentState.position, options)
-    $(@element).queue (next) =>
-      $(@element).css zIndex: currentState.zIndex
-      next()
-
-  jumpToRestingFace: ->
-    currentState = _(@restingState).clone()
-    $(@element).queue (next) =>
-      $(@element).css backgroundPosition: @_getBackgroundPosition(currentState.faceUp)
-      next()
-
-  # This method flips the card. Only call it if the face state changed
-  animateToRestingFace: (options) ->
-    $(@element).animate {scale: 1.08},
-      duration: options.duration / 9
-      easing: 'linear'
-    $(@element).animate {scaleX: 0},
-      duration: options.duration * 3/9
-      easing: 'linear'
-    @jumpToRestingFace() # queue new background image
-    $(@element).animate {scaleX: 1},
-      duration: options.duration * 4/9
-      easing: 'linear'
-    $(@element).animate {scale: 1},
-      duration: options.duration / 9
-      easing: 'linear'
-
-  _getBackgroundPosition: (faceUp) ->
-    [width, height] = [@size.width, @size.height]
-    if faceUp
-      left = @model.rank.value * width
-      top = 'CDHS'.indexOf(@model.suit.letter()) * height
-    else
-      [left, top] = [2 * width, 4 * height]
-    "-#{left}px -#{top}px"
-
-class App.Controllers.Test
-  constructor: -> new App.Models.Game
+  show: @model.deal
+  
