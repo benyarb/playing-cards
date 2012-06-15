@@ -60,6 +60,18 @@
       }
     };
 
+    Suit.prototype.symbol = function() {
+      if (this.letter() === 'C') {
+        return '&clubs;';
+      } else if (this.letter() === 'D') {
+        return '&diams;';
+      } else if (this.letter() === 'H') {
+        return '&hearts;';
+      } else {
+        return '&spades;';
+      }
+    };
+
     return Suit;
 
   })();
@@ -109,29 +121,25 @@
         }
         return _results;
       }).call(this);
-      this.deck = _(this.createDeck()).shuffle();
+      this.deck = _.shuffle(this.createDeck());
     }
 
     Game.prototype.deal = function() {
-      var deckCopy, i, j, _i, _ref, _results;
+      var deckCopy, i, spareCards, _i, _ref;
       deckCopy = this.deck.slice(0);
-      _results = [];
-      for (i = _i = 0, _ref = this.numberOfPlayers.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        _results.push((function() {
-          var _j, _results1;
-          _results1 = [];
-          for (j = _j = 0; 0 <= i ? _j < i : _j > i; j = 0 <= i ? ++_j : --_j) {
-            _results1.push(this.players[i].push(deckCopy.pop()));
-          }
-          return _results1;
-        }).call(this));
+      spareCards = deckCopy.length % this.numberOfPlayers;
+      while (deckCopy.length - spareCards) {
+        for (i = _i = 0, _ref = this.players.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+          this.players[i].push(deckCopy.pop());
+        }
       }
-      return _results;
+      this.spareCards = deckCopy;
+      return this.players;
     };
 
     Game.prototype.createDeck = function() {
       var rank, suit;
-      return _((function() {
+      return _.flatten((function() {
         var _i, _len, _ref, _results;
         _ref = App.Models.suits;
         _results = [];
@@ -149,7 +157,7 @@
           })());
         }
         return _results;
-      })()).flatten();
+      })());
     };
 
     return Game;
@@ -166,14 +174,32 @@
 
     function Play(numberOfPlayers) {
       this.numberOfPlayers = numberOfPlayers != null ? numberOfPlayers : 4;
+      this.model = new App.Models.Game(this.numberOfPlayers);
+      this.hands = this.model.deal();
+      this.rootElement = $(App.rootElement)[0];
     }
 
-    Play.model = new App.Models.Game(Play.numberOfPlayers);
-
-    Play.prototype.show = Play.model.deal;
+    Play.prototype.setupTable = function() {
+      var tableStructure;
+      $(this.rootElement).empty();
+      tableStructure = "      <% _.each(hands, function(hand, player) { %>        <h2>Player <%= player + 1 %></h2>                <ul>          <% _.each(hand, function(card) { %>            <li><%= card.rank.letter() %>                <%= card.suit.symbol() %></li>          <% }); %>        </ul>      <% }); %>    ";
+      this.table = _.template(tableStructure, {
+        hands: this.hands
+      });
+      return $(this.rootElement).append(this.table);
+    };
 
     return Play;
 
   })();
+
+  $(function() {
+    return $('button').click(function() {
+      var game, players;
+      players = $('#choose-players').val();
+      game = new App.Controllers.Play(players);
+      return game.setupTable();
+    });
+  });
 
 }).call(this);

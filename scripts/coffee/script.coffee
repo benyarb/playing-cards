@@ -33,6 +33,15 @@ class App.Models.Suit
     'CDHS'.charAt(@value) # clubs, diamonds, hearts, spades
   color: ->
     if @letter() is 'C' or @letter() is 'S' then 'black' else 'red'
+  symbol: ->
+    if @letter() is 'C'    
+      '&clubs;'
+    else if @letter() is 'D'
+      '&diams;'
+    else if @letter() is 'H'
+      '&hearts;'
+    else
+      '&spades;'
 
 
 # Do not instantiate Rank and Suit; instead, use these:
@@ -54,19 +63,24 @@ class App.Models.Game
     # Create a Shuffled Deck
     # Uses Fischer-Yates Algorithm - http://bwy.me/4c
     # Via Underscore.js - http://underscorejs.org/#shuffle
-    @deck = _(@createDeck()).shuffle()
+    @deck = _.shuffle(@createDeck())
 
   deal: ->
     deckCopy = @deck.slice(0)
+    spareCards = deckCopy.length % @numberOfPlayers
 
-    for i in [0...@numberOfPlayers.length]
-      for j in [0...i]
+    while deckCopy.length - spareCards
+      for i in [0...@players.length]
         @players[i].push(deckCopy.pop())
 
+    @spareCards = deckCopy
+
+    @players
+
   createDeck: ->
-    _(new App.Models.Card(rank, suit) \
+    _.flatten(new App.Models.Card(rank, suit) \
       for rank in App.Models.ranks \
-      for suit in App.Models.suits).flatten()
+      for suit in App.Models.suits)
 
 
 #------------------
@@ -80,8 +94,42 @@ App.rootElement = '#card-table'
 
 class App.Controllers.Play
   constructor: (@numberOfPlayers = 4) ->
+    @model = new App.Models.Game(@numberOfPlayers)
+    @hands = @model.deal()
+    @rootElement = $(App.rootElement)[0]
 
-  @model: new App.Models.Game(@numberOfPlayers)
+  setupTable: ->
+    # make sure the table is clear
+    $(@rootElement).empty()
 
-  show: @model.deal
+    tableStructure = "
+      <% _.each(hands, function(hand, player) { %>
+        <h2>Player <%= player + 1 %></h2>
+        
+        <ul>
+          <% _.each(hand, function(card) { %>
+            <li><%= card.rank.letter() %>
+                <%= card.suit.symbol() %></li>
+          <% }); %>
+        </ul>
+      <% }); %>
+    "
+    
+    @table = _.template(tableStructure, {hands : @hands})
+
+    $(@rootElement).append(@table)
+
+  
+#------------------
+# Events
+#------------------
+
+$ ->
+  $('button').click ->
+    players = $('#choose-players').val()
+    game = new App.Controllers.Play(players)
+    game.setupTable()
+
+
+
   

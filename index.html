@@ -57,28 +57,24 @@
 
     <div class="container">
 
-      <!-- Example row of columns -->
-      <div class="row" id="card-table">
-        <div class="span3" id="player-1">
-          <h2>Player 1</h2>
+      <h1>Playing Cards</h1>
+      <p>
+        <label for="choose-players">How many players?</label>
+        <select class="span1" id="choose-players">
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+        </select><br>
 
-          <ul></ul>
-        </div>
-        <div class="span3" id="player-2">
-          <h2>Player 2</h2>
+        <button class="btn btn-primary">Play</button>
+      </p>
 
-          <ul></ul>
-        </div>
-        <div class="span3" id="player-3">
-          <h2>Player 3</h2>
-
-          <ul></ul>
-        </div>
-        <div class="span3" id="player-4">
-          <h2>Player 4</h2>
-
-          <ul></ul>
-        </div>
+      <div id="card-table">
+        <!-- Game will start here. -->
       </div>
 
       <hr>
