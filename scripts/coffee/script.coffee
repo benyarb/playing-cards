@@ -103,7 +103,7 @@ App.rootElement = '#card-table'
 # underscore's _.each function: http://underscorejs.org/#each
 App.Views.table = "
     <% _.each(hands, function(hand, player) { %>
-      <div class='well'>
+      <div class='well span5'>
         <h2>Player <%= player + 1 %></h2>
         
         <div class='hand'>
