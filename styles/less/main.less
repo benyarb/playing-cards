@@ -70,6 +70,8 @@ select {
     font-weight: normal;
     font-family: Arial, sans-serif;
     position: relative;
+    bottom: 0;
+    .transition(~"bottom .15s"); // animate back to 0 from hover state
     background-color: #fff;
     .box-shadow(~".2em .2em .5em #333");
   }
@@ -77,6 +79,7 @@ select {
   // hover state
   .card:hover {
     bottom: 1em;
+    .transition(~"bottom .15s");
   }
 
   
