@@ -33,15 +33,15 @@ class App.Models.Suit
     'CDHS'.charAt(@value) # clubs, diamonds, hearts, spades
   color: ->
     if @letter() is 'C' or @letter() is 'S' then 'black' else 'red'
-  symbol: ->
-    if @letter() is 'C'    
-      '&clubs;'
+  name: ->
+    if @letter() is 'C'
+      'clubs'
     else if @letter() is 'D'
-      '&diams;'
+      'diams'
     else if @letter() is 'H'
-      '&hearts;'
+      'hearts'
     else
-      '&spades;'
+      'spades'
 
 
 # Do not instantiate Rank and Suit; instead, use these:
@@ -108,7 +108,10 @@ App.Views.table = "
         
         <div class='hand'>
           <% _.each(hand, function(card) { %>
-            <span class='<%= card.suit.color() %> card'><%= card.rank.letter() + card.suit.symbol() %></span>
+            <span class='card rank-<%= card.rank.letter().toLowerCase() %> <%= card.suit.name() %>'>
+              <span class='rank'><%= card.rank.letter() %></span>
+              <span class='suit'>&<%= card.suit.name() %>;</span>
+            </span>
           <% }); %>
         </div>
       </div>

@@ -60,15 +60,15 @@
       }
     };
 
-    Suit.prototype.symbol = function() {
+    Suit.prototype.name = function() {
       if (this.letter() === 'C') {
-        return '&clubs;';
+        return 'clubs';
       } else if (this.letter() === 'D') {
-        return '&diams;';
+        return 'diams';
       } else if (this.letter() === 'H') {
-        return '&hearts;';
+        return 'hearts';
       } else {
-        return '&spades;';
+        return 'spades';
       }
     };
 
@@ -170,7 +170,7 @@
 
   App.rootElement = '#card-table';
 
-  App.Views.table = "    <% _.each(hands, function(hand, player) { %>      <div class='well'>        <h2>Player <%= player + 1 %></h2>                <div class='hand'>          <% _.each(hand, function(card) { %>            <span class='<%= card.suit.color() %> card'><%= card.rank.letter() + card.suit.symbol() %></span>          <% }); %>        </div>      </div>    <% }); %>  ";
+  App.Views.table = "    <% _.each(hands, function(hand, player) { %>      <div class='well'>        <h2>Player <%= player + 1 %></h2>                <div class='hand'>          <% _.each(hand, function(card) { %>            <span class='card rank-<%= card.rank.letter().toLowerCase() %> <%= card.suit.name() %>'>              <span class='rank'><%= card.rank.letter() %></span>              <span class='suit'>&<%= card.suit.name() %>;</span>            </span>          <% }); %>        </div>      </div>    <% }); %>  ";
 
   if (App.Controllers == null) {
     App.Controllers = {};
