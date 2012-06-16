@@ -182,7 +182,7 @@
     Play.prototype.setupTable = function() {
       var tableStructure;
       $(this.rootElement).empty();
-      tableStructure = "      <% _.each(hands, function(hand, player) { %>        <h2>Player <%= player + 1 %></h2>                <ul>          <% _.each(hand, function(card) { %>            <li><%= card.rank.letter() %>                <%= card.suit.symbol() %></li>          <% }); %>        </ul>      <% }); %>    ";
+      tableStructure = "      <% _.each(hands, function(hand, player) { %>        <h2>Player <%= player + 1 %></h2>                <div class='hand'>          <% _.each(hand, function(card) { %>            <span class='<%= card.suit.color() %> card'><%= card.rank.letter() + card.suit.symbol() %></span>          <% }); %>        </div>      <% }); %>    ";
       this.table = _.template(tableStructure, {
         hands: this.hands
       });
@@ -194,7 +194,7 @@
   })();
 
   $(function() {
-    return $('button').click(function() {
+    return $('#play').click(function() {
       var game, players;
       players = $('#choose-players').val();
       game = new App.Controllers.Play(players);

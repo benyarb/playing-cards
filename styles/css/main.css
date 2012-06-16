@@ -1,3 +1,27 @@
-::-moz-selection{background:#fe57a1;color:#fff;text-shadow:none;}
-::selection{background:#fe57a1;color:#fff;text-shadow:none;}
-body{padding-top:60px;padding-bottom:40px;}
+/* ==|== primary styles =====================================================
+   Author: Ben Yarbrough
+   ========================================================================== */
+::-moz-selection {
+  background: #fe57a1;
+  color: #fff;
+  text-shadow: none;
+}
+::selection {
+  background: #fe57a1;
+  color: #fff;
+  text-shadow: none;
+}
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.card {
+  display: inline-block;
+  padding: 30px 10px;
+}
+.red {
+  border: 1px solid #f00;
+}
+.black {
+  border: 1px solid #000;
+}

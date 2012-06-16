@@ -19,7 +19,6 @@
 
     <!-- Make this thing look good -->
     <link href="styles/css/bootstrap.css" rel="stylesheet">
-    <link href="styles/css/main.css" rel="stylesheet">
     <link href="styles/css/responsive.css" rel="stylesheet">
 
     <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -43,12 +42,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="#">Playing Cards</a>
           <nav class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a data-toggle="modal" href="#details">Details</a></li>
+              <li><a target="_blank" href="https://github.com/benyarb/playing-cards">Code</a></li>
+              <li><a href="http://benyarb.com/about">About Me</a></li>
+              <li><a href="http://benyarb.com/contact">Contact</a></li>
             </ul>
           </nav><!--/.nav-collapse -->
         </div>
@@ -59,7 +59,7 @@
 
       <h1>Playing Cards</h1>
       <p>
-        <label for="choose-players">How many players?</label>
+        <label for="choose-players">Number of Players: </label>
         <select class="span1" id="choose-players">
           <option value="2">2</option>
           <option value="3">3</option>
@@ -70,7 +70,7 @@
           <option value="8">8</option>
         </select><br>
 
-        <button class="btn btn-primary">Play</button>
+        <button class="btn btn-primary" id="play">Play</button>
       </p>
 
       <div id="card-table">
@@ -92,11 +92,12 @@
     <script>window.jQuery || document.write('<script src="scripts/js/libs/jquery-1.7.1.min.js"><\/script>')</script>
     
     <!-- Twitter Bootstrap JavaScript - All In One -->
-    <script src="scripts/js/libs/bootstrap/bootstrap.min.js"></script>
+    <!-- <script src="scripts/js/libs/bootstrap/bootstrap.min.js"></script>-->
 
     <!-- Twitter Bootstrap JavaScript - Individual Plugins -->
-    <!-- <script src="scripts/js/libs/bootstrap/bootstrap-transition.js"></script>
-    <script src="scripts/js/libs/bootstrap/bootstrap-alert.js"></script>
+    <script src="scripts/js/libs/bootstrap/bootstrap-transition.js"></script>
+    <script src="scripts/js/libs/bootstrap/bootstrap-collapse.js"></script>
+    <!-- <script src="scripts/js/libs/bootstrap/bootstrap-alert.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-modal.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-dropdown.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-scrollspy.js"></script>
@@ -104,7 +105,6 @@
     <script src="scripts/js/libs/bootstrap/bootstrap-tooltip.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-popover.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-button.js"></script>
-    <script src="scripts/js/libs/bootstrap/bootstrap-collapse.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-carousel.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-typeahead.js"></script> -->
 

@@ -106,12 +106,11 @@ class App.Controllers.Play
       <% _.each(hands, function(hand, player) { %>
         <h2>Player <%= player + 1 %></h2>
         
-        <ul>
+        <div class='hand'>
           <% _.each(hand, function(card) { %>
-            <li><%= card.rank.letter() %>
-                <%= card.suit.symbol() %></li>
+            <span class='<%= card.suit.color() %> card'><%= card.rank.letter() + card.suit.symbol() %></span>
           <% }); %>
-        </ul>
+        </div>
       <% }); %>
     "
     
@@ -125,7 +124,8 @@ class App.Controllers.Play
 #------------------
 
 $ ->
-  $('button').click ->
+  # Play Button
+  $('#play').click ->
     players = $('#choose-players').val()
     game = new App.Controllers.Play(players)
     game.setupTable()
