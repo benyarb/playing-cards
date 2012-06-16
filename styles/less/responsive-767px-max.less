@@ -61,6 +61,39 @@
     position: static;
   }
 
+  // Smaller cards    
+  #card-table {
+  
+    .card {
+      font-size: .4em;
+      vertical-align: middle;
+    }
+  
+    .card span.rank,
+    .card span.suit {
+      text-align: center;
+    }
+  
+    .card span.rank {
+      font-size: 2em;
+      margin-top: .2em;
+    }
+  
+    .card span.suit {
+      font-size: 2.5em;
+    }
+  
+    .card .suit:after {
+      content: "" !important;
+    }
+  
+    .card .rank:after {
+      left: .5em;
+      padding: 0 .1em;
+    }
+  
+  }
+
 }
 
 

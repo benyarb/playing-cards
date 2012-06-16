@@ -6,13 +6,13 @@
 // Remove text-shadow in selection highlight: h5bp.com/i
 // These selection declarations have to be separate
 ::-moz-selection {
-  background: #fe57a1;
+  background: #0074CC;
   color: #fff;
   text-shadow: none;
 }
 
 ::selection {
-  background: #fe57a1;
+  background: #0074CC;
   color: #fff;
   text-shadow: none;
 }
@@ -104,7 +104,7 @@ select {
   }
 
   
-  // Top left - main info (rank and suit)
+  // Top left - rank and suit
   // ------------------
 
   .card .rank,
@@ -169,40 +169,5 @@ select {
     right: .3em;
   }
 
-}
-
-
-// Smaller cards for use inside text
-// ------------------
-  
-#card-table.in-text {
-
-  .card {
-    font-size: .4em;
-    vertical-align: middle;
-  }
-
-  .card span.rank,
-  .card span.suit {
-    text-align: center;
-  }
-
-  .card span.rank {
-    font-size: 2em;
-    margin-top: .2em;
-  }
-
-  .card span.suit {
-    font-size: 2.5em;
-  }
-
-  .card .suit:after {
-    content: "" !important;
-  }
-
-  .card .rank:after {
-    left: .5em;
-    padding: 0 .1em;
-  }
-
+  // Smaller cards in responsive-767px-max.less
 }
