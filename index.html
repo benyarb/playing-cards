@@ -47,8 +47,16 @@
             <ul class="nav">
               <li><a data-toggle="modal" href="#details">Details</a></li>
               <li><a target="_blank" href="https://github.com/benyarb/playing-cards">Code</a></li>
-              <li><a href="http://benyarb.com/about">About Me</a></li>
-              <li><a href="http://benyarb.com/contact">Contact</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ben <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a target="_blank" href="http://benyarb.com">Website</a></li>
+                  <li><a target="_blank" href="http://benyarb.com/portfolio">Portfolio</a></li>
+                  <li><a target="_blank" href="http://benyarb.com/resume">Resume</a></li>
+                  <li><a target="_blank" href="http://benyarb.com/about">About</a></li>
+                  <li><a target="_blank" href="http://benyarb.com/contact">Contact</a></li>
+                </ul>
+              </li>
             </ul>
           </nav><!--/.nav-collapse -->
         </div>
@@ -57,7 +65,7 @@
 
     <div class="container">
 
-      <h1>Playing Cards</h1>
+      <h1>Start a Game</h1>
       <p>
         <button class="btn btn-primary" id="play">Play</button>
         <label for="choose-players"> with </label>
@@ -85,6 +93,23 @@
 
     </div> <!-- /container -->
 
+    <div class="modal hide" id="details">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Project Details</h3>
+      </div>
+      <div class="modal-body">
+        <p>This is a CoffeeScript implementation of a card deck with shuffle and deal functionality. The code can be <a href="https://github.com/benyarb/playing-cards">viewed on GitHub</a>. The main file of interest is the CoffeeScript file (<a href="https://github.com/benyarb/playing-cards/blob/master/scripts/coffee/script.coffee" target="_blank">script.coffee</a>) where most of the functionality lives. Other files of interest:</p>
+        <ul>
+          <li><a href="https://github.com/benyarb/playing-cards/blob/master/index.html" target="_blank">HTML</a></li>
+          <li><a href="https://github.com/benyarb/playing-cards/blob/master/styles/less/main.less" target="_blank">Styles</a></li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+      </div>
+    </div>
+
     <!-- JavaScript at the bottom for fast page loading -->
   
     <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
@@ -97,14 +122,14 @@
     <!-- Twitter Bootstrap JavaScript - Individual Plugins -->
     <script src="scripts/js/libs/bootstrap/bootstrap-transition.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-collapse.js"></script>
-    <!-- <script src="scripts/js/libs/bootstrap/bootstrap-alert.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-modal.js"></script>
+    <script src="scripts/js/libs/bootstrap/bootstrap-button.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-dropdown.js"></script>
+    <!-- <script src="scripts/js/libs/bootstrap/bootstrap-alert.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-scrollspy.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-tab.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-tooltip.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-popover.js"></script>
-    <script src="scripts/js/libs/bootstrap/bootstrap-button.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-carousel.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-typeahead.js"></script> -->
 
