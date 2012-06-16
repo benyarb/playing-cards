@@ -84,37 +84,44 @@ class App.Models.Game
 
 
 #------------------
+# Views
+#------------------
+
+App.Views ?= {}
+
+App.rootElement = '#card-table'
+
+App.Views.table = "
+    <% _.each(hands, function(hand, player) { %>
+      <h2>Player <%= player + 1 %></h2>
+      
+      <div class='hand'>
+        <% _.each(hand, function(card) { %>
+          <span class='<%= card.suit.color() %> card'><%= card.rank.letter() + card.suit.symbol() %></span>
+        <% }); %>
+      </div>
+    <% }); %>
+  "
+
+
+#------------------
 # Controllers
 #------------------
 
 App.Controllers ?= {}
-
-App.rootElement = '#card-table'
-
 
 class App.Controllers.Play
   constructor: (@numberOfPlayers = 4) ->
     @model = new App.Models.Game(@numberOfPlayers)
     @hands = @model.deal()
     @rootElement = $(App.rootElement)[0]
+    @view = App.Views.table
 
   setupTable: ->
     # make sure the table is clear
     $(@rootElement).empty()
-
-    tableStructure = "
-      <% _.each(hands, function(hand, player) { %>
-        <h2>Player <%= player + 1 %></h2>
-        
-        <div class='hand'>
-          <% _.each(hand, function(card) { %>
-            <span class='<%= card.suit.color() %> card'><%= card.rank.letter() + card.suit.symbol() %></span>
-          <% }); %>
-        </div>
-      <% }); %>
-    "
     
-    @table = _.template(tableStructure, {hands : @hands})
+    @table = _.template(@view, {hands : @hands})
 
     $(@rootElement).append(@table)
 

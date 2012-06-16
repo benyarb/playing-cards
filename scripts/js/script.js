@@ -164,11 +164,17 @@
 
   })();
 
-  if (App.Controllers == null) {
-    App.Controllers = {};
+  if (App.Views == null) {
+    App.Views = {};
   }
 
   App.rootElement = '#card-table';
+
+  App.Views.table = "    <% _.each(hands, function(hand, player) { %>      <h2>Player <%= player + 1 %></h2>            <div class='hand'>        <% _.each(hand, function(card) { %>          <span class='<%= card.suit.color() %> card'><%= card.rank.letter() + card.suit.symbol() %></span>        <% }); %>      </div>    <% }); %>  ";
+
+  if (App.Controllers == null) {
+    App.Controllers = {};
+  }
 
   App.Controllers.Play = (function() {
 
@@ -177,13 +183,12 @@
       this.model = new App.Models.Game(this.numberOfPlayers);
       this.hands = this.model.deal();
       this.rootElement = $(App.rootElement)[0];
+      this.view = App.Views.table;
     }
 
     Play.prototype.setupTable = function() {
-      var tableStructure;
       $(this.rootElement).empty();
-      tableStructure = "      <% _.each(hands, function(hand, player) { %>        <h2>Player <%= player + 1 %></h2>                <div class='hand'>          <% _.each(hand, function(card) { %>            <span class='<%= card.suit.color() %> card'><%= card.rank.letter() + card.suit.symbol() %></span>          <% }); %>        </div>      <% }); %>    ";
-      this.table = _.template(tableStructure, {
+      this.table = _.template(this.view, {
         hands: this.hands
       });
       return $(this.rootElement).append(this.table);
