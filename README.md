@@ -4,8 +4,6 @@ This is a CoffeeScript implementation of a card deck with shuffle and deal funct
 * [HTML](https://github.com/benyarb/playing-cards/blob/master/index.html)
 * [Style](https://github.com/benyarb/playing-cards/blob/master/styles/less/main.less)
 
-View a [demo](http://benyarbrough.com/playing-cards/).
-
 This project was built in these languages:
 * [CoffeeScript](http://coffeescript.org/)
 * [Less](http://lesscss.org/)
@@ -16,3 +14,5 @@ It makes use of several frameworks and components, including:
 * [Underscore.js](http://underscorejs.org/)
 * [jQuery](http://jquery.com/)
 * [Modernizr](http://modernizr.com/)
+
+View a [demo](http://benyarbrough.com/playing-cards/) on my sandbox site or [visit my main site](http://benyarb.com/) for more information about me.
