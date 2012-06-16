@@ -712,7 +712,7 @@ body{padding-top:60px;padding-bottom:40px;}
 h1{margin-bottom:8px;}
 #play{margin-bottom:8px;}
 label{display:inline-block;vertical-align:middle;}
-select{display:inline-block;}
+select{display:inline-block;width:60px;}
 #card-table .card{display:inline-block;width:3.3em;height:4.6em;border:1px solid #666;border-radius:.3em;-webkit-border-radius:0.3em;-moz-border-radius:0.3em;border-radius:0.3em;padding:.25em;margin:0 .5em .5em 0;text-align:center;font-size:1.2em;font-weight:normal;font-family:Arial,sans-serif;position:relative;bottom:0;-webkit-transition:bottom .15s;-moz-transition:bottom .15s;-ms-transition:bottom .15s;-o-transition:bottom .15s;transition:bottom .15s;background-color:#fff;-webkit-box-shadow:.2em .2em .5em #333;-moz-box-shadow:.2em .2em .5em #333;box-shadow:.2em .2em .5em #333;}
 #card-table .card:hover{bottom:1em;-webkit-transition:bottom .15s;-moz-transition:bottom .15s;-ms-transition:bottom .15s;-o-transition:bottom .15s;transition:bottom .15s;}
 #card-table .card.diams{color:#00f;}

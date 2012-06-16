@@ -69,7 +69,7 @@
       <p>
         <button class="btn btn-primary" id="play">Play</button>
         <label for="choose-players"> with </label>
-        <select class="span1" id="choose-players">
+        <select id="choose-players">
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
@@ -88,7 +88,9 @@
       <hr>
 
       <footer>
-        <p>&copy; Ben Yarbrough 2012</p>
+        <p><i class="icon-globe"></i> Built by <a target="_blank" href="http://benyarb.com">Ben Yarbrough</a>.
+           Learn more <a data-toggle="modal" href="#details">about this project</a>
+           or view the <a target="_blank" href="https://github.com/benyarb/playing-cards">code on GitHub</a>.</p>
       </footer>
 
     </div> <!-- /container -->
@@ -102,7 +104,22 @@
         <p>This is a CoffeeScript implementation of a card deck with shuffle and deal functionality. The code can be <a href="https://github.com/benyarb/playing-cards">viewed on GitHub</a>. The main file of interest is the CoffeeScript file (<a href="https://github.com/benyarb/playing-cards/blob/master/scripts/coffee/script.coffee" target="_blank">script.coffee</a>) where most of the functionality lives. Other files of interest:</p>
         <ul>
           <li><a href="https://github.com/benyarb/playing-cards/blob/master/index.html" target="_blank">HTML</a></li>
-          <li><a href="https://github.com/benyarb/playing-cards/blob/master/styles/less/main.less" target="_blank">Styles</a></li>
+          <li><a href="https://github.com/benyarb/playing-cards/blob/master/styles/less/main.less" target="_blank">Style</a></li>
+        </ul>
+
+        <p>This project was built in these languages:</p>
+        <ul>
+          <li><a href="http://coffeescript.org/" target="_blank">CoffeeScript</a></li>
+          <li><a href="http://lesscss.org/" target="_blank">Less</a></li>
+        </ul>
+
+        <p>It makes use of several frameworks and components, including:</p>
+        <ul>
+          <li><a href="http://html5boilerplate.com/" target="_blank">HTML5 Boilerplate</a></li>
+          <li><a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a></li>
+          <li><a href="http://underscorejs.org/" target="_blank">Underscore.js</a></li>
+          <li><a href="http://jquery.com/" target="_blank">jQuery</a></li>
+          <li><a href="http://modernizr.com/" target="_blank">Modernizr</a></li>
         </ul>
       </div>
       <div class="modal-footer">
@@ -119,7 +136,8 @@
     <!-- Twitter Bootstrap JavaScript - All In One -->
     <!-- <script src="scripts/js/libs/bootstrap/bootstrap.min.js"></script>-->
 
-    <!-- Twitter Bootstrap JavaScript - Individual Plugins -->
+    <!-- Twitter Bootstrap JavaScript - Individual Plugins
+         Concatenate and minify in production-->
     <script src="scripts/js/libs/bootstrap/bootstrap-transition.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-collapse.js"></script>
     <script src="scripts/js/libs/bootstrap/bootstrap-modal.js"></script>
