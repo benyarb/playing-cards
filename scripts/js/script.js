@@ -170,7 +170,7 @@
 
   App.rootElement = '#card-table';
 
-  App.Views.table = "    <% _.each(hands, function(hand, player) { %>      <div class='well span5'>        <h2>Player <%= player + 1 %></h2>                <div class='hand'>          <% _.each(hand, function(card) { %>            <span class='card rank-<%= card.rank.letter().toLowerCase() %> <%= card.suit.name() %>'>              <span class='rank'><%= card.rank.letter() %></span>              <span class='suit'>&<%= card.suit.name() %>;</span>            </span>          <% }); %>        </div>      </div>    <% }); %>  ";
+  App.Views.table = "    <% _.each(hands, function(hand, player) { %>      <div class='well span5'>        <h2>Player <%= player + 1 %></h2>                <div class='hand'>          <% _.each(hand, function(card) { %>            <span class='card <%= card.suit.name() %>'>              <span class='rank'><%= card.rank.letter() %></span>              <span class='suit'>&<%= card.suit.name() %>;</span>            </span>          <% }); %>        </div>      </div>    <% }); %>  ";
 
   if (App.Controllers == null) {
     App.Controllers = {};
