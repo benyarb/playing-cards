@@ -19,7 +19,7 @@
     }
 
     Rank.prototype.letter = function() {
-      return 'A23456789TJQK'[this.value];
+      return 'A23456789TJQK'.charAt(this.value);
     };
 
     Rank.prototype.nextLower = function() {

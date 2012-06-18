@@ -19,7 +19,7 @@ class App.Models.Rank
   constructor: (@value) ->
 
   letter: ->
-    'A23456789TJQK'[@value]
+    'A23456789TJQK'.charAt(@value)
   nextLower: ->
     if @value is 0 then null else App.Models.ranks[@value - 1]
   nextHigher: ->
