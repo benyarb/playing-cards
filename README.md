@@ -1,4 +1,4 @@
-# [Playing Cards](http://benyarbrough.com/playing-cards/)
+# Playing Cards
 
 This is a CoffeeScript implementation of a card deck with shuffle and deal functionality. The main file of interest is the CoffeeScript file ([script.coffee](https://github.com/benyarb/playing-cards/blob/master/scripts/coffee/script.coffee)) where most of the functionality lives. The [HTML](https://github.com/benyarb/playing-cards/blob/master/index.html) and [Styles](https://github.com/benyarb/playing-cards/blob/master/styles/less/main.less) are worth checking out, as well.
 
